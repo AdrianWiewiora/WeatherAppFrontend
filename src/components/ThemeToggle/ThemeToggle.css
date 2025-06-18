@@ -1,0 +1,50 @@
+.toggle-switch {
+    position: relative;
+    width: 70px;
+    height: 36px;
+    background-color: var(--toggle-bg, #ccc);
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 1;
+    color: var(--icon-color, #ff9d00);
+    pointer-events: none;
+}
+
+.slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.slider.dark {
+    transform: translateX(34px);
+}
+
+body.light {
+    --toggle-bg: #34495e;
+    --icon-color: white;
+}
+
+body.dark {
+    --toggle-bg: #ff9d00;
+    --icon-color: white;
+}

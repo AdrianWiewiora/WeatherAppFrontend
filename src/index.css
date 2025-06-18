@@ -1,0 +1,32 @@
+/* Global CSS variables for default (dark) theme */
+:root {
+  --bg-color: #0a1f44;
+  --header-bg-color: #071633;
+  --text-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* CSS variables overrides for light theme */
+body.light {
+  --bg-color: #ffffff;
+  --header-bg-color: #d8e6f9;
+  --text-color: #0a1f44;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+  margin: 0 auto;
+  text-align: center;
+}
