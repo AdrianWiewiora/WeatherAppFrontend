@@ -1,3 +1,7 @@
+html, body, #root {
+  height: 100%;
+}
+
 /* Global CSS variables for default (dark) theme */
 :root {
   --bg-color: #0a1f44;
@@ -27,6 +31,9 @@ body {
 }
 
 .app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   text-align: center;
 }

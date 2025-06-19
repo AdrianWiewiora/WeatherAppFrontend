@@ -1,0 +1,50 @@
+.weekly-summary {
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: auto;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.weekly-summary h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.weekly-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.weekly-summary li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.weekly-summary.error {
+    color: red;
+}
+
+/* Responsive styles  */
+@media (max-width: 768px) {
+    .weekly-summary h3 {
+        font-size: 1.4rem;
+    }
+    .weekly-summary li {
+        font-size: 1.0rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .weekly-summary h3 {
+        font-size: 1.3rem;
+    }
+    .weekly-summary li {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+}

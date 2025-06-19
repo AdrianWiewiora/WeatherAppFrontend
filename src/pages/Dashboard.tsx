@@ -4,7 +4,6 @@ const Dashboard = () => {
     return (
         <main className="dashboard">
             <WeatherTable />
-            {/* <WeeklySummary /> <-- na końcu dodasz */}
         </main>
     );
 };

@@ -99,6 +99,7 @@
     .weather-table th,
     .weather-table td {
         font-size: 1.3rem;
+        padding: 0.7rem;
     }
 
     .weather-table td i {
@@ -110,6 +111,7 @@
     .weather-table th,
     .weather-table td {
         font-size: 1.1rem;
+        padding: 0.6rem;
     }
     .layout {
         padding: 1rem;
@@ -121,6 +123,7 @@
     .weather-table th,
     .weather-table td {
         font-size: 1rem;
+        padding: 0.5rem;
     }
     .layout {
         padding: 0.9rem;
