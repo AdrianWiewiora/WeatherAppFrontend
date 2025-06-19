@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react';
 import './WeatherTable.css';
-import useGeolocation from '../../hooks/useGeolocation';
 import { getWeatherIconClass } from '../../utils/weatherIcons';
 import { MdGpsFixed, MdLocationPin } from 'react-icons/md';
+import MapSelector from '../MapSelector/MapSelector';
+const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
 
 interface Forecast {
     date: string;
@@ -12,8 +13,14 @@ interface Forecast {
     estimatedEnergy: number;
 }
 
-const WeatherTable = () => {
-    const { latitude, longitude, loading: geoLoading, refreshLocation } = useGeolocation(); // Geolocation hook
+interface WeatherTableProps {
+    latitude: number | null;
+    longitude: number | null;
+    geoLoading: boolean;
+    refreshLocation: (lat?: number, lon?: number) => void;
+}
+
+const WeatherTable = ({latitude, longitude, geoLoading, refreshLocation }: WeatherTableProps) => {
     // Weather forecast state
     const [forecast, setForecast] = useState<Forecast[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -23,10 +30,17 @@ const WeatherTable = () => {
     const [serverError, setServerError] = useState<string | null>(null);
     const [locationNameError, setLocationNameError] = useState<string | null>(null);
 
+    const [isMapOpen, setIsMapOpen] = useState(false);
+
+    const handleLocationSelect = (lat: number, lon: number) => {
+        refreshLocation(lat, lon);
+        setIsMapOpen(false);
+    };
+
     // Fetch weather forecast based on current coordinate
     useEffect(() => {
         if (geoLoading || latitude === null || longitude === null) return;
-
+        setLoading(true);
         const fetchForecast = async () => {
             try {
                 const response = await fetch(
@@ -53,7 +67,7 @@ const WeatherTable = () => {
 
         const fetchLocationName = async () => {
             try {
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+                const res = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${latitude}&lon=${longitude}&format=json`);
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
                 const data = await res.json();
                 const name = data.address.city || data.address.town || data.address.village || data.address.hamlet || 'Unknown location';
@@ -102,12 +116,18 @@ const WeatherTable = () => {
                     <button onClick={handleRequestLocation} className="icon-button" title="Retry location">
                         <MdGpsFixed />
                     </button>
-                    <button className="icon-button" title="Pin">
+                    <button
+                        onClick={() => setIsMapOpen(true)}
+                        className="icon-button"
+                        title="Select location from map"
+                    >
                         <MdLocationPin />
                     </button>
                 </div>
             </div>
-
+            {isMapOpen && (
+                <MapSelector isOpen={isMapOpen} onConfirm={handleLocationSelect} onClose={() => setIsMapOpen(false)} />
+            )}
             <div className="weather-table-container">
             <table className="weather-table horizontal">
                 <thead>

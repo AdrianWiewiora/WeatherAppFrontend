@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './WeeklySummary.css';
-import useGeolocation from '../../hooks/useGeolocation';
+
 
 interface WeeklyData {
     minTemperature: number;
@@ -10,8 +10,13 @@ interface WeeklyData {
     precipitationSummary: string;
 }
 
-const WeeklySummary = () => {
-    const { latitude, longitude, loading: geoLoading } = useGeolocation();
+interface WeeklySummaryProps {
+    latitude: number | null;
+    longitude: number | null;
+    geoLoading: boolean;
+}
+
+const WeeklySummary = ({ latitude, longitude, geoLoading }: WeeklySummaryProps) => {
     const [summary, setSummary] = useState<WeeklyData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

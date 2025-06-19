@@ -5,7 +5,7 @@ interface GeolocationData {
     longitude: number;
     loading: boolean;
     isFallback: boolean;
-    refreshLocation: () => void;
+    refreshLocation: (lat?: number, lon?: number) => void;
 }
 
 // Default location: Warszawa
@@ -23,8 +23,17 @@ const useGeolocation = (): GeolocationData => {
     const [loading, setLoading] = useState(true);
     const [isFallback, setIsFallback] = useState(false);
 
-    const resolveLocation = () => {
+    const resolveLocation = (manualLat?: number, manualLon?: number) => {
         setLoading(true);
+
+        if (manualLat !== undefined && manualLon !== undefined) {
+            setLatitude(manualLat);
+            setLongitude(manualLon);
+            setIsFallback(true);
+            setLoading(false);
+            return;
+        }
+
         if (!navigator.geolocation) {
             setLatitude(DEFAULT_LAT);
             setLongitude(DEFAULT_LON);
