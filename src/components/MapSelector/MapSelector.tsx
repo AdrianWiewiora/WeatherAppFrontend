@@ -2,12 +2,23 @@ import { useEffect, useRef, useState } from 'react';
 import './MapSelector.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 interface MapSelectorProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: (lat: number, lon: number) => void;
 }
+
+const defaultIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
 
 /**
  * A modal component that displays an interactive Leaflet map.
@@ -34,7 +45,7 @@ const MapSelector = ({ isOpen, onClose, onConfirm }: MapSelectorProps) => {
                 if (markerRef.current) {
                     markerRef.current.setLatLng([lat, lng]);
                 } else {
-                    markerRef.current = L.marker([lat, lng]).addTo(mapInstance.current!);
+                    markerRef.current = L.marker([lat, lng], { icon: defaultIcon }).addTo(mapInstance.current!);
                 }
             });
         }

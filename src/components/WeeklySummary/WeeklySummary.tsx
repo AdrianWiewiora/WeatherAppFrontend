@@ -27,7 +27,7 @@ const WeeklySummary = ({ latitude, longitude, geoLoading }: WeeklySummaryProps) 
 
         const fetchSummary = async () => {
             try {
-                const res = await fetch(`/api/weather/weekly-summary?latitude=${latitude}&longitude=${longitude}`);
+                const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/weather/weekly-summary?latitude=${latitude}&longitude=${longitude}`);
                 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
                 const data = await res.json();
                 setSummary(data);

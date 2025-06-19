@@ -44,7 +44,7 @@ const WeatherTable = ({latitude, longitude, geoLoading, refreshLocation }: Weath
         const fetchForecast = async () => {
             try {
                 const response = await fetch(
-                    `/api/weather/forecast?latitude=${latitude}&longitude=${longitude}`
+                    `${import.meta.env.VITE_BACKEND_URL}api/weather/forecast?latitude=${latitude}&longitude=${longitude}`
                 );
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
