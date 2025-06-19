@@ -1,0 +1,132 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.weather-table-container {
+    overflow-x: auto;
+    user-select: none;
+    width: 100%;
+}
+
+/* Table styling */
+.weather-table {
+    min-width: max-content;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Cell styles */
+.weather-table th,
+.weather-table td {
+    font-size: 1.5rem;
+    padding: 0.8rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header cells */
+.weather-table th {
+    background-color: rgba(255, 255, 255, 0.07);
+    font-weight: 600;
+}
+
+/* First column (row labels) */
+.weather-table td:first-child {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: left;
+}
+
+/* Weather icon  */
+.weather-table td i {
+    font-size: 3rem;
+    padding: 0.5rem;
+}
+
+/* Header: location name + buttons */
+.weather-header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.weather-header h2 {
+    margin: 5px;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.weather-header-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Action buttons (GPS, pin) */
+.icon-button {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 0.7rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: var(--header-bg-color);
+}
+
+.icon-button i {
+    font-size: 1.4rem;
+}
+
+/* Responsive typography for table cells  */
+@media (max-width: 1360px) {
+    .weather-table th,
+    .weather-table td {
+        font-size: 1.3rem;
+    }
+
+    .weather-table td i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 1203px) {
+    .weather-table th,
+    .weather-table td {
+        font-size: 1.1rem;
+    }
+    .layout {
+        padding: 1rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .weather-table th,
+    .weather-table td {
+        font-size: 1rem;
+    }
+    .layout {
+        padding: 0.9rem;
+    }
+
+    .weather-table td i {
+        font-size: 2rem;
+    }
+}

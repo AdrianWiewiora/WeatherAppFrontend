@@ -1,10 +1,12 @@
+import WeatherTable from '../components/WeatherTable/WeatherTable';
+
 const Dashboard = () => {
     return (
-        <div style={{ padding: '2rem' }}>
-            <p>Loading weather data...</p>
-        </div>
+        <main className="dashboard">
+            <WeatherTable />
+            {/* <WeeklySummary /> <-- na końcu dodasz */}
+        </main>
     );
 };
 
 export default Dashboard;
-
